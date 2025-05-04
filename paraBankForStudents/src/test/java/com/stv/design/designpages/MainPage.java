@@ -15,7 +15,7 @@ public class MainPage extends Page {
 
     public void clickOnAllowCookiesIfVisible() {
         WebElement allowCookiesButton = getDriver().findElement(ALLOW_ALL_BUTTON);
-        if (!allowCookiesButton.isDisplayed())
+        if (allowCookiesButton.isDisplayed())
             allowCookiesButton.click();
     }
 }
