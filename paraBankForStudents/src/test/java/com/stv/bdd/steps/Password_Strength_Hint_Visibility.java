@@ -45,4 +45,17 @@ public class Password_Strength_Hint_Visibility {
 
         Assert.assertEquals(shouldBeVisible, isActuallyVisible);
     }
+
+    @Given("the registration form is open")
+    public void theRegistrationFormIsOpen() {
+
+    }
+
+    @When("the user types {string} into the password input field")
+    public void theUserTypesIntoThePasswordInputField(String arg0) {
+    }
+
+    @Then("the password instruction should be {string}")
+    public void thePasswordInstructionShouldBe(String arg0) {
+    }
 }

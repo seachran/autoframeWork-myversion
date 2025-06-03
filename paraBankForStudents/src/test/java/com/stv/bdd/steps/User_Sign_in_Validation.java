@@ -4,6 +4,7 @@ import com.stv.factory.factorypages.LoginPage;
 import com.stv.factory.factorypages.MainPage;
 import com.stv.framework.core.drivers.MyDriver;
 import io.cucumber.java.After;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -84,5 +85,37 @@ public class User_Sign_in_Validation {
     @After
     public void closeWebDriver() {
         getDriver().quit();
+    }
+
+    @Given("the login page is open")
+    public void theLoginPageIsOpen() {
+    }
+
+    @When("the user enters a valid email address into the email field")
+    public void theUserEntersAValidEmailAddressIntoTheEmailField() {
+    }
+
+    @And("the user leaves the password field empty")
+    public void theUserLeavesThePasswordFieldEmpty() {
+    }
+
+    @And("the user clicks the sign in button")
+    public void theUserClicksTheSignInButton() {
+    }
+
+    @Then("a password required error message should be shown")
+    public void aPasswordRequiredErrorMessageShouldBeShown() {
+    }
+
+    @When("the user types {string} into the email field")
+    public void theUserTypesIntoTheEmailField(String arg0) {
+    }
+
+    @And("the user types {string} into the password field")
+    public void theUserTypesIntoThePasswordField(String arg0) {
+    }
+
+    @Then("an invalid email error message should be displayed")
+    public void anInvalidEmailErrorMessageShouldBeDisplayed() {
     }
 }
