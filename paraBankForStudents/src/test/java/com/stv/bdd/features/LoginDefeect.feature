@@ -1,5 +1,5 @@
 Feature: Show Password Enhancement
-  As a user
+  As user
   I want to be able to toggle password visibility
   So that I can check my input
   Scenario: Password visibility toggle is missing

@@ -8,6 +8,8 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static org.openqa.selenium.support.PageFactory.*;
+
 public class HomePage {
     WebDriver driver;
 
@@ -22,7 +24,7 @@ public class HomePage {
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver, this);
+        initElements(driver, this);
     }
 
     public void searchFor(String keyword) {

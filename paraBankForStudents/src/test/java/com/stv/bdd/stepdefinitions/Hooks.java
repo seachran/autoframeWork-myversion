@@ -1,6 +1,5 @@
 package com.stv.bdd.stepdefinitions;
 
-import com.stv.bdd.pages.LoginPage;
 import com.stv.bdd.core.WiggleTestBase;
 import com.stv.framework.core.lib.WigglePageURLs;
 import io.cucumber.java.After;
@@ -12,36 +11,39 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import static com.stv.framework.core.lib.WigglePageURLs.LOGIN_URL;
 
 public class Hooks {
 
     @Before
-    public void setUp() {
-        WebDriver driver = WiggleTestBase.getDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
-        driver.manage().window().maximize();
-        driver.get(WigglePageURLs.START_URL);
+    public void initializeTest() {
+        final WebDriver browser = WiggleTestBase.getDriver();
+        browser.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+        browser.manage().window().maximize();
+        browser.get(WigglePageURLs.START_URL);
+
+        final WebDriverWait wait = new WebDriverWait(browser, Duration.ofSeconds(5));
 
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-            WebElement acceptCookies = wait.until(ExpectedConditions.elementToBeClickable(By.id("onetrust-accept-btn-handler")));
-            acceptCookies.click();
-        } catch (Exception e) {
-            System.out.println("Cookie consent not displayed or already handled.");
+            WebElement cookiePopup = wait.until(
+                    ExpectedConditions.elementToBeClickable(By.id("onetrust-accept-btn-handler"))
+            );
+            cookiePopup.click();
+        } catch (Exception ignored) {
+            System.out.println("No cookie prompt found or already dismissed.");
         }
 
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-            WebElement loginButton = wait.until(ExpectedConditions.elementToBeClickable(By.id("loginMenu")));
-            loginButton.click();
+            WebElement loginLink = wait.until(
+                    ExpectedConditions.elementToBeClickable(By.id("loginMenu"))
+            );
+            loginLink.click();
         } catch (Exception e) {
-            throw new RuntimeException("Login button is not clickable", e);
+            throw new RuntimeException("Could not click on the login menu.", e);
         }
     }
 
     @After
-    public void tearDown() {
+    public void cleanUpTest() {
         WiggleTestBase.quitDriver();
     }
 }

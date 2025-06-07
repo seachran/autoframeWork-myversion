@@ -7,14 +7,13 @@ public class WiggleTestBase {
 
     private static WebDriver driver;
 
-    public static WebDriver getDriver() {
+    public static synchronized WebDriver getDriver() {
         if (driver == null) {
             driver = MyDriver.getDriver();
         }
         return driver;
     }
-
-    public static void quitDriver() {
+    public static synchronized void quitDriver() {
         if (driver != null) {
             driver.quit();
             driver = null;
@@ -22,3 +21,4 @@ public class WiggleTestBase {
         }
     }
 }
+
