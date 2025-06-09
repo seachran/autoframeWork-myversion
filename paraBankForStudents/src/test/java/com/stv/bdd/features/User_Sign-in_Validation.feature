@@ -1,26 +1,24 @@
-Feature: User Sign-in Validation
+Feature: User_Sign_in_Validation
 
   Background:
-    Given the login page is open
+    Given login page is loaded
 
-  Scenario: Attempt to sign in with an empty password
-    When the user enters a valid email address into the email field
-    And the user leaves the password field empty
-    And the user clicks the sign in button
-    Then a password required error message should be shown
+  Scenario: Sign in with empty password field
+    When the user enters correct email into the email field
+    And the user enters empty password
+    And the user clicks on the sign in button
+    Then the empty password error message is displayed
 
-  Scenario Outline: Attempt to sign in with an invalid email and a valid password
-    When the user types "<email>" into the email field
-    And the user types "<password>" into the password field
-    And the user clicks the sign in button
-    Then an invalid email error message should be displayed
-
+  Scenario Outline: Sign in with invalid email and valid password
+    When the user enters "<email>" into the email field
+    And the user enters "<password>" into the password field
+    Then the invalid email error message is displayed
     Examples:
-      | email              | password    |
-      | userexample.com    | password123 |
-      | user@com           | password123 |
-      | @example.com       | password123 |
-      | user@              | password123 |
-      | user@@example.com  | password123 |
-      | user@example..com  | password123 |
+      | email           | password    |
+      | somegmailcom    | password111 |
+      | somegmail.com   | password111 |
+      | @gmail.com      | password111 |
+      | some@           | password111 |
+      | some@@gmail.com | password111 |
+      | some@gmail..com | password111 |
 

@@ -1,13 +1,12 @@
-Feature: Password Strength Hint Visibility
+Feature: Password_Strength_Hint_Visibility
 
-  Scenario Outline: Display password instruction note depending on password length
-    Given the registration form is open
-    When the user types "<password>" into the password input field
-    Then the password instruction should be "<visibility>"
-
+  Scenario Outline: Check the password note visibility
+    Given registration page is loaded
+    When the user enters "<password>" into the new password field
+    Then the password note should be "<visibility>"
     Examples:
-      | password      | visibility |
-      | ab            | visible    |
-      | test1         | visible    |
-      | secure1       | hidden     |
-      | longpassword  | hidden     |
+      | password        | visibility |
+      | 1               | visible    |
+      | 12345           | visible    |
+      | 123456          | hidden     |
+      | 123456790123456 | hidden     |

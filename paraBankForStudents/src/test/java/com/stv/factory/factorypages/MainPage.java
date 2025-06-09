@@ -3,10 +3,10 @@ package com.stv.factory.factorypages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 import java.time.Duration;
 
+import static com.stv.framework.core.lib.WigglePageURLs.START_URL;
 import static com.stv.framework.core.utils.Waiters.waitForElementVisible;
 
 public class MainPage extends BasicPage {
@@ -21,20 +21,33 @@ public class MainPage extends BasicPage {
         super(driver);
     }
 
-    public LoginPage navigateToLoginPage() {
-        loginPageLink.click();
-        return new LoginPage(driver);
+    public MainPage openMainPage() {
+        driver.get(START_URL);
+        driver.manage().window().maximize();
+        return this;
     }
 
-    public MainPage waitForAllowCookies() {
+    public LoginPage prepareAndNavigateToLoginPage() {
+        return this
+                .waitForAllowCookies()
+                .acceptCookiesIfPresent()
+                .navigateToLoginPage();
+    }
+
+    private MainPage waitForAllowCookies() {
         waitForElementVisible(driver,
                 Duration.ofSeconds(25),
                 acceptCookiesButton);
         return this;
     }
 
-    public MainPage acceptCookiesIfPresent() {
+    private MainPage acceptCookiesIfPresent() {
         acceptCookiesButton.click();
         return this;
+    }
+
+    private LoginPage navigateToLoginPage() {
+        loginPageLink.click();
+        return new LoginPage(driver);
     }
 }
