@@ -32,4 +32,7 @@ public class MyDriver {
 //        System.setProperty("webdriver.gecko.driver", exePath);
         driver = new FirefoxDriver();
     }
+
+    public static void initStealthDriver() {
+    }
 }
